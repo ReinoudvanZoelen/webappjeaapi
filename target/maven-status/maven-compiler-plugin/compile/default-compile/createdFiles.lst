@@ -1,0 +1,3 @@
+application\RestAPI.class
+Models\Pet.class
+Resources\PetResource.class
