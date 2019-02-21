@@ -1,4 +1,7 @@
 package DAL.Interfaces;
 
-public interface IAccountDAL {
+import Models.Account;
+
+public interface IAccountDAL extends IDALBase<Account> {
+    Account getByLogin(String emailAddress, String password);
 }
