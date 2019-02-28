@@ -23,7 +23,7 @@ import java.util.Date;
 public class AuthorisationResource {
     private final static String secret = "reinoud";
 
-    // TODO Have the interfaces here instead of the implementation
+    // Figure out where the DI is injected from when using @Inject
     IAccountDAL AccountDAL = new AccountDALHibernate();
     IUserDAL UserDAL = new UserDALHibernate();
 
@@ -62,6 +62,6 @@ public class AuthorisationResource {
                 )
                 .compact();
 
-        return Response.ok(jwt, MediaType.APPLICATION_JSON).build();
+        return Response.ok(jwt, MediaType.APPLICATION_JSON).status(Response.Status.OK).build();
     }
 }
