@@ -10,8 +10,8 @@ import java.util.UUID;
 @ApplicationScoped
 public class UserController {
 
-    @Inject
-    private UserDALHibernate userJPA;
+    //@Inject
+    private UserDALHibernate userJPA = new UserDALHibernate();
 
     public User addUser(User user) {
         return userJPA.Create(user);
