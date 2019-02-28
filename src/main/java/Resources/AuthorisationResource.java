@@ -2,6 +2,8 @@ package Resources;
 
 import DAL.Implementations.Hibernate.AccountDALHibernate;
 import DAL.Implementations.Hibernate.UserDALHibernate;
+import DAL.Interfaces.IAccountDAL;
+import DAL.Interfaces.IUserDAL;
 import Models.Account;
 import Models.User;
 import io.jsonwebtoken.Jwts;
@@ -22,11 +24,8 @@ public class AuthorisationResource {
     private final static String secret = "reinoud";
 
     // TODO Have the interfaces here instead of the implementation
-    @Inject
-    AccountDALHibernate AccountDAL;
-
-    @Inject
-    UserDALHibernate UserDAL;
+    IAccountDAL AccountDAL = new AccountDALHibernate();
+    IUserDAL UserDAL = new UserDALHibernate();
 
     @POST
     @Path("/getToken")

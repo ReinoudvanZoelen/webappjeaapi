@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.equalTo;
 
-public class LoginTest {
+public class Test_Login {
 
     private int port = 8080;
 
