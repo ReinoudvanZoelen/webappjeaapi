@@ -53,7 +53,6 @@ public class AuthorisationResource {
                 .setIssuer("webappjeaapi")
                 .setSubject("emailAddress")
                 .claim("name", user.getFullName())
-                .claim("scope", account.getRoles())
                 .setIssuedAt(startTime)
                 .setExpiration(DateUtils.addHours(startTime, 1))
                 .signWith(

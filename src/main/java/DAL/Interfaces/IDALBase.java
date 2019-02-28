@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IDALBase<T> {
-    public T GetById(UUID uuid);
-    public List<T> GetAll();
-    public T Update(T model);
-    public boolean Delete(UUID id);
+    T GetById(UUID uuid);
+    List<T> GetAll();
+    void Update(T model);
+    boolean Delete(UUID id);
 }

@@ -21,11 +21,6 @@ public class AccountResource {
         ac.setEmailAddress("sulley@doggo.com");
         ac.setPassword("woofwoof123");
 
-        String[] roles = new String[2];
-        roles[0] = "doggo";
-        roles[1] = "superadmin";
-
-        ac.setRoles(roles);
         return ac;
     }
 }

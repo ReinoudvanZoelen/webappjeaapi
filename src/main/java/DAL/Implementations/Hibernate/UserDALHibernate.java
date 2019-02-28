@@ -18,9 +18,7 @@ public class UserDALHibernate implements IUserDAL {
     }
 
     @Override
-    public User Update(User model) {
-        return null;
-    }
+    public void Update(User model) { }
 
     @Override
     public boolean Delete(UUID id) {

@@ -1,15 +1,21 @@
 package Models;
 
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 import java.util.UUID;
 
+@Entity
 @XmlRootElement(name = "Account")
 public class Account {
+
+    @Id
     private UUID id;
     private String emailAddress;
     private String password;
-    private String[] roles;
+
+    public Account(){}
 
     @XmlElement(name = "id")
     public UUID getId() {
@@ -36,14 +42,5 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @XmlElement(name = "roles")
-    public String[] getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String[] roles) {
-        this.roles = roles;
     }
 }
