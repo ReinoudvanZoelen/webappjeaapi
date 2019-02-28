@@ -31,7 +31,11 @@ public class UserController {
         return user;
     }
 
-    public Object getUser(UUID uuid) {
+    public User getByEmailAddress(String emailAddress){
+        return userJPA.GetByEmailAddress(emailAddress);
+    }
+
+    public User getByUUID(UUID uuid) {
         return userJPA.GetById(uuid);
     }
 }

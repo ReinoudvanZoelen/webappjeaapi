@@ -18,10 +18,18 @@ public class UserResource {
     @GET
     @Path("/{uuid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getUser(@PathParam("uuid") UUID uuid){
+    public Response getUser(@PathParam("uuid") UUID uuid) {
         return Response.ok()
-                .entity(userController.getUser(uuid))
+                .entity(userController.getByUUID(uuid))
                 .build();
+    }
+
+    @GET
+    @Path("/byAddress/{emailaddress}")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUser(@PathParam("emailaddress") String emailaddress) {
+        return Response.ok().entity(userController.getByEmailAddress(emailaddress)).build();
     }
 
     @POST
@@ -30,8 +38,7 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public User createStudent(@FormParam("fullname") String fullname,
                               @FormParam("emailaddress") String emailaddress,
-                              @FormParam("password") String password)
-    {
+                              @FormParam("password") String password) {
         return userController.createUser(fullname, emailaddress, password);
     }
 }

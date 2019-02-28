@@ -28,15 +28,16 @@ public class UserDALHibernate implements IUserDAL {
     }
 
     @Override
-    public List<User> GetAll() {
-        List<User> users = null;
-        try {
-            users = entityManager.createQuery("SELECT s FROM User s", User.class).getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public User GetByEmailAddress(String emailAddress) {
+        String query = "SELECT user FROM User user WHERE user.EmailAddress = '" + emailAddress + "'";
+        User user = entityManager.createQuery(query, User.class).getSingleResult();
 
-        return users;
+        return user;
+    }
+
+    @Override
+    public List<User> GetAll() {
+        return entityManager.createQuery("SELECT user FROM User user", User.class).getResultList();
     }
 
     @Override

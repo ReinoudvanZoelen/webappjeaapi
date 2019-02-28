@@ -1,9 +1,6 @@
 package Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.UUID;
 
@@ -14,6 +11,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID Id;
     private String FullName;
+    @Column(unique = true)
     private String EmailAddress;
     private String HashedPassword;
     private String Salt;
