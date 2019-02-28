@@ -1,6 +1,7 @@
 package Resources;
 
-import Models.Account;
+import Database.Implementations.Hibernate.AccountDALHibernate;
+import Entities.Account;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,7 +21,6 @@ public class AccountResource {
         Account ac = new Account();
         ac.setEmailAddress("sulley@doggo.com");
         ac.setPassword("woofwoof123");
-
         return ac;
     }
 }

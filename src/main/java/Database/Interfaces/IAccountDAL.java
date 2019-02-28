@@ -1,6 +1,6 @@
-package DAL.Interfaces;
+package Database.Interfaces;
 
-import Models.Account;
+import Entities.Account;
 
 public interface IAccountDAL extends IDALBase<Account> {
     Account getByLogin(String emailAddress, String password);

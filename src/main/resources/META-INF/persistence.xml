@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence">
+    <persistence-unit name="CloverCoatPU" transaction-type="JTA">
+        <jta-data-source>java:/JEAWebAppDB</jta-data-source>
+        <properties>
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+        </properties>
+    </persistence-unit>
+</persistence>
