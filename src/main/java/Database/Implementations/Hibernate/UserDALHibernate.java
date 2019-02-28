@@ -4,19 +4,23 @@ import Database.Interfaces.IUserDAL;
 import Entities.User;
 
 import javax.annotation.Resource;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.util.List;
 import java.util.UUID;
 
+@ApplicationScoped
 public class UserDALHibernate implements IUserDAL {
 
-    @PersistenceContext(unitName = "CloverCoatPU")
-    private EntityManager entityManager;
+    //@PersistenceContext(unitName = "CloverCoatPU")
+    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CloverCoatPU");
+    private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     @Resource
-    private UserTransaction transaction;
+    private EntityTransaction transaction;
 
     @Override
     public User GetById(UUID uuid) {
@@ -30,38 +34,31 @@ public class UserDALHibernate implements IUserDAL {
             users = entityManager.createQuery("SELECT s FROM User s", User.class).getResultList();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            return users;
         }
+
+        return users;
     }
 
     @Override
     public User Create(User model) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(model);
+        entityManager.getTransaction().commit();
+
+        return model;
+    }
+
+    @Override
+    public User Update(User model) {
         try {
             transaction.begin();
             entityManager.persist(model);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            return model;
         }
-    }
 
-    @Override
-    public User Update(User model) {
-        User userToUpdate = entityManager.find(User.class, model.getId());
-
-        try {
-            transaction.begin();
-            userToUpdate.setFirstName(model.getFirstName());
-            userToUpdate.setLastName(model.getLastName());
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            return userToUpdate;
-        }
+        return model;
     }
 
     @Override
@@ -75,8 +72,8 @@ public class UserDALHibernate implements IUserDAL {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        } finally {
-            return true;
         }
+
+        return true;
     }
 }

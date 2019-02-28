@@ -26,9 +26,12 @@ public class UserResource {
 
     @POST
     @Path("")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public User createStudent(User user) {
-        return userController.addUser(user);
+    public User createStudent(@FormParam("fullname") String fullname,
+                              @FormParam("emailaddress") String emailaddress,
+                              @FormParam("password") String password)
+    {
+        return userController.createUser(fullname, emailaddress, password);
     }
 }

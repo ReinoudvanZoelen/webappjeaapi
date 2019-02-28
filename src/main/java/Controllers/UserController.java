@@ -10,11 +10,25 @@ import java.util.UUID;
 @ApplicationScoped
 public class UserController {
 
-    //@Inject
+    // TODO: @Inject
     private UserDALHibernate userJPA = new UserDALHibernate();
 
-    public User addUser(User user) {
-        return userJPA.Create(user);
+    public User createUser(String fullname, String emailaddress, String password)
+    {
+        // TODO: Generate salt
+        String salt = "reinoud";
+
+        // TODO: Hash password
+        String hashedPassword = password + salt;
+
+        User newuser = new User();
+        newuser.setFullName(fullname);
+        newuser.setEmailAddress(emailaddress);
+        newuser.setHashedPassword(hashedPassword);
+        newuser.setSalt(salt);
+
+        User user = userJPA.Create(newuser);
+        return user;
     }
 
     public Object getUser(UUID uuid) {

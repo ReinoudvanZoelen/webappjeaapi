@@ -1,6 +1,10 @@
 package Entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlElement;
 import java.util.UUID;
 
 @Entity
@@ -9,13 +13,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID Id;
+    private String FullName;
+    private String EmailAddress;
+    private String HashedPassword;
+    private String Salt;
 
-    private String FirstName;
-    private String LastName;
+    public User() {}
 
-    public User() {
-    }
-
+    @XmlElement(name = "id")
     public UUID getId() {
         return Id;
     }
@@ -24,19 +29,39 @@ public class User {
         Id = id;
     }
 
-    public String getFirstName() {
-        return FirstName;
+    @XmlElement(name = "fullname")
+    public String getFullName() {
+        return FullName;
     }
 
-    public void setFirstName(String firstName) {
-        FirstName = firstName;
+    public void setFullName(String fullName) {
+        FullName = fullName;
     }
 
-    public String getLastName() {
-        return LastName;
+    @XmlElement(name = "emailaddress")
+    public String getEmailAddress() {
+        return EmailAddress;
     }
 
-    public void setLastName(String lastName) {
-        LastName = lastName;
+    public void setEmailAddress(String emailAddress) {
+        EmailAddress = emailAddress;
+    }
+
+    @XmlElement(name = "hashedpassword")
+    public String getHashedPassword() {
+        return HashedPassword;
+    }
+
+    public void setHashedPassword(String hashedPassword) {
+        HashedPassword = hashedPassword;
+    }
+
+    @XmlElement(name = "salt")
+    public String getSalt() {
+        return Salt;
+    }
+
+    public void setSalt(String salt) {
+        Salt = salt;
     }
 }
