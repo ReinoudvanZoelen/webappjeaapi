@@ -29,7 +29,7 @@ public class PlayerDALHibernate implements IPlayerDAL {
 
     @Override
     public Player GetByEmailAddress(String emailAddress) {
-        String query = "SELECT user FROM Player user WHERE user.EmailAddress = '" + emailAddress + "'";
+        String query = "SELECT player FROM Player player WHERE player.EmailAddress = '" + emailAddress + "'";
         Player player = entityManager.createQuery(query, Player.class).getSingleResult();
 
         return player;
@@ -37,7 +37,7 @@ public class PlayerDALHibernate implements IPlayerDAL {
 
     @Override
     public List<Player> GetAll() {
-        return entityManager.createQuery("SELECT user FROM Player user", Player.class).getResultList();
+        return entityManager.createQuery("SELECT player FROM Player player", Player.class).getResultList();
     }
 
     @Override
