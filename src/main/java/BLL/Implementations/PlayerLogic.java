@@ -1,14 +1,13 @@
-package BLL;
+package BLL.Implementations;
 
+import BLL.Interfaces.IPlayerLogic;
 import DAL.Implementations.Hibernate.PlayerDALHibernate;
 import DAL.Interfaces.IPlayerDAL;
 import Entities.Player;
 
-import javax.enterprise.context.ApplicationScoped;
 import java.util.UUID;
 
-@ApplicationScoped
-public class PlayerController {
+public class PlayerLogic implements IPlayerLogic {
 
     // TODO: @Inject
     private IPlayerDAL playerJPA = new PlayerDALHibernate();
