@@ -1,7 +1,7 @@
 package Resources;
 
 import Controllers.UserController;
-import Entities.User;
+import Entities.Player;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -36,9 +36,9 @@ public class UserResource {
     @Path("")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public User createStudent(@FormParam("fullname") String fullname,
-                              @FormParam("emailaddress") String emailaddress,
-                              @FormParam("password") String password) {
+    public Player createStudent(@FormParam("fullname") String fullname,
+                                @FormParam("emailaddress") String emailaddress,
+                                @FormParam("password") String password) {
         return userController.createUser(fullname, emailaddress, password);
     }
 }

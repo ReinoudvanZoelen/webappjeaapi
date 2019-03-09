@@ -1,41 +1,33 @@
 package Controllers;
 
-import Database.Implementations.Hibernate.UserDALHibernate;
-import Entities.User;
+import Database.Implementations.Hibernate.PlayerDALHibernate;
+import Entities.Player;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import java.util.UUID;
 
 @ApplicationScoped
 public class UserController {
 
     // TODO: @Inject
-    private UserDALHibernate userJPA = new UserDALHibernate();
+    private PlayerDALHibernate userJPA = new PlayerDALHibernate();
 
-    public User createUser(String fullname, String emailaddress, String password)
+    public Player createUser(String fullname, String emailaddress, String password)
     {
-        // TODO: Generate salt
-        String salt = "reinoud";
-
-        // TODO: Hash password
-        String hashedPassword = password + salt;
-
-        User newuser = new User();
+        Player newuser = new Player();
         newuser.setFullName(fullname);
         newuser.setEmailAddress(emailaddress);
-        newuser.setHashedPassword(hashedPassword);
-        newuser.setSalt(salt);
+        newuser.setPassword(password);
 
-        User user = userJPA.Create(newuser);
-        return user;
+        Player player = userJPA.Create(newuser);
+        return player;
     }
 
-    public User getByEmailAddress(String emailAddress){
+    public Player getByEmailAddress(String emailAddress){
         return userJPA.GetByEmailAddress(emailAddress);
     }
 
-    public User getByUUID(UUID uuid) {
+    public Player getByUUID(UUID uuid) {
         return userJPA.GetById(uuid);
     }
 }

@@ -1,7 +1,7 @@
 package Database.Implementations.Hibernate;
 
-import Database.Interfaces.IUserDAL;
-import Entities.User;
+import Database.Interfaces.IPlayerDAL;
+import Entities.Player;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @ApplicationScoped
-public class UserDALHibernate implements IUserDAL {
+public class PlayerDALHibernate implements IPlayerDAL {
 
     //@PersistenceContext(unitName = "CloverCoatPU")
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CloverCoatPU");
@@ -23,25 +23,25 @@ public class UserDALHibernate implements IUserDAL {
     private EntityTransaction transaction;
 
     @Override
-    public User GetById(UUID uuid) {
-        return entityManager.find(User.class, uuid);
+    public Player GetById(UUID uuid) {
+        return entityManager.find(Player.class, uuid);
     }
 
     @Override
-    public User GetByEmailAddress(String emailAddress) {
-        String query = "SELECT user FROM User user WHERE user.EmailAddress = '" + emailAddress + "'";
-        User user = entityManager.createQuery(query, User.class).getSingleResult();
+    public Player GetByEmailAddress(String emailAddress) {
+        String query = "SELECT user FROM Player user WHERE user.EmailAddress = '" + emailAddress + "'";
+        Player player = entityManager.createQuery(query, Player.class).getSingleResult();
 
-        return user;
+        return player;
     }
 
     @Override
-    public List<User> GetAll() {
-        return entityManager.createQuery("SELECT user FROM User user", User.class).getResultList();
+    public List<Player> GetAll() {
+        return entityManager.createQuery("SELECT user FROM Player user", Player.class).getResultList();
     }
 
     @Override
-    public User Create(User model) {
+    public Player Create(Player model) {
         entityManager.getTransaction().begin();
         entityManager.persist(model);
         entityManager.getTransaction().commit();
@@ -50,7 +50,7 @@ public class UserDALHibernate implements IUserDAL {
     }
 
     @Override
-    public User Update(User model) {
+    public Player Update(Player model) {
         try {
             transaction.begin();
             entityManager.persist(model);
@@ -66,9 +66,9 @@ public class UserDALHibernate implements IUserDAL {
     public boolean Delete(UUID id) {
         try {
             transaction.begin();
-            User userToDelete = entityManager.find(User.class, id);
-            entityManager.remove(entityManager.contains(userToDelete) ?
-                    userToDelete : entityManager.merge(userToDelete));
+            Player playerToDelete = entityManager.find(Player.class, id);
+            entityManager.remove(entityManager.contains(playerToDelete) ?
+                    playerToDelete : entityManager.merge(playerToDelete));
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
