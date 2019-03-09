@@ -2,6 +2,7 @@ package Entities;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -16,6 +17,9 @@ public class Team {
 
     @ManyToOne
     private Player Player_B;
+
+    @OneToMany
+    private List<TeamScore> TeamScores;
 
     public Team() { }
 
