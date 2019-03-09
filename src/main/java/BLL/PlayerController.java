@@ -1,7 +1,7 @@
-package Controllers;
+package BLL;
 
-import Database.Implementations.Hibernate.PlayerDALHibernate;
-import Database.Interfaces.IPlayerDAL;
+import DAL.Implementations.Hibernate.PlayerDALHibernate;
+import DAL.Interfaces.IPlayerDAL;
 import Entities.Player;
 
 import javax.enterprise.context.ApplicationScoped;

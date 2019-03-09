@@ -1,4 +1,4 @@
-package Database.Interfaces;
+package DAL.Interfaces;
 
 import java.util.List;
 import java.util.UUID;

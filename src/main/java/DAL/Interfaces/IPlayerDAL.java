@@ -1,4 +1,4 @@
-package Database.Interfaces;
+package DAL.Interfaces;
 
 import Entities.Player;
 

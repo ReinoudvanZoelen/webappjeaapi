@@ -1,6 +1,6 @@
-package Database.Implementations.Hibernate;
+package DAL.Implementations.Hibernate;
 
-import Database.Interfaces.IPlayerDAL;
+import DAL.Interfaces.IPlayerDAL;
 import Entities.Player;
 
 import javax.annotation.Resource;

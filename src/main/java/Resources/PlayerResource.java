@@ -1,6 +1,6 @@
 package Resources;
 
-import Controllers.PlayerController;
+import BLL.PlayerController;
 import Entities.Player;
 
 import javax.inject.Inject;
