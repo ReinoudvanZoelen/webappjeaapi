@@ -2,21 +2,22 @@ package Entities;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class User {
+public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID Id;
     private String FullName;
-    @Column(unique = true)
     private String EmailAddress;
-    private String HashedPassword;
-    private String Salt;
+    private String Password;
+    @OneToMany
+    private List<Team> Teams;
 
-    public User() {}
+    public Player() {}
 
     @XmlElement(name = "id")
     public UUID getId() {
@@ -45,21 +46,14 @@ public class User {
         EmailAddress = emailAddress;
     }
 
-    @XmlElement(name = "hashedpassword")
-    public String getHashedPassword() {
-        return HashedPassword;
+    @XmlElement(name = "password")
+    public String getPassword() {
+        return Password;
     }
 
-    public void setHashedPassword(String hashedPassword) {
-        HashedPassword = hashedPassword;
+    public void setPassword(String password) {
+        Password = password;
     }
 
-    @XmlElement(name = "salt")
-    public String getSalt() {
-        return Salt;
-    }
 
-    public void setSalt(String salt) {
-        Salt = salt;
-    }
 }
