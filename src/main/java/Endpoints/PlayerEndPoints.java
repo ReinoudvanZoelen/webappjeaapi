@@ -29,7 +29,18 @@ public class PlayerEndPoints {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPlayer(@PathParam("emailaddress") String emailaddress) {
-        return Response.ok().entity(playerLogic.getByEmailAddress(emailaddress)).build();
+        return Response.ok()
+                .entity(playerLogic.getByEmailAddress(emailaddress))
+                .build();
+    }
+
+    @GET
+    @Path("")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAll(){
+        return Response.ok()
+                .entity(playerLogic.getAll())
+                .build();
     }
 
     @POST

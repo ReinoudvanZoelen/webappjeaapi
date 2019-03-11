@@ -5,8 +5,11 @@ import DAL.Implementations.Hibernate.PlayerDALHibernate;
 import DAL.Interfaces.IPlayerDAL;
 import Entities.Player;
 
+import javax.enterprise.context.ApplicationScoped;
+import java.util.List;
 import java.util.UUID;
 
+@ApplicationScoped
 public class PlayerLogic implements IPlayerLogic {
 
     // TODO: @Inject
@@ -21,6 +24,11 @@ public class PlayerLogic implements IPlayerLogic {
 
         Player player = playerJPA.Create(newPlayer);
         return player;
+    }
+
+    @Override
+    public List<Player> getAll() {
+        return playerJPA.GetAll();
     }
 
     public Player getByEmailAddress(String emailAddress){
