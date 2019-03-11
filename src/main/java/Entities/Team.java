@@ -1,6 +1,7 @@
 package Entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
 import java.util.UUID;
@@ -12,20 +13,17 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID Id;
 
-    @ManyToOne
-    private Player Player_A;
-
-    @ManyToOne
-    private Player Player_B;
+    @ManyToMany
+    @Size(min = 2, max = 2, message = "Please enter valid players for this team. A Team consists of exactly two players.")
+    private List<Player> Players;
 
     @OneToMany
     private List<TeamScore> TeamScores;
 
     public Team() { }
 
-
-    // GETTERS AND SETTERS
-    @XmlElement(name = "id")
+    // Getters and Setters
+    @XmlElement
     public UUID getId() {
         return Id;
     }
@@ -34,21 +32,21 @@ public class Team {
         Id = id;
     }
 
-    @XmlElement(name = "player_a")
-    public Player getPlayer_A() {
-        return Player_A;
+    @XmlElement
+    public List<Player> getPlayers() {
+        return Players;
     }
 
-    public void setPlayer_A(Player player_A) {
-        Player_A = player_A;
+    public void setPlayers(List<Player> players) {
+        Players = players;
     }
 
-    @XmlElement(name = "player_b")
-    public Player getPlayer_B() {
-        return Player_B;
+    @XmlElement
+    public List<TeamScore> getTeamScores() {
+        return TeamScores;
     }
 
-    public void setPlayerB(Player player_B) {
-        Player_B = Player_B;
+    public void setTeamScores(List<TeamScore> teamScores) {
+        TeamScores = teamScores;
     }
 }
