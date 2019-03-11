@@ -16,7 +16,7 @@ public class PlayerEndPoints {
     IPlayerLogic playerLogic;
 
     @GET
-    @Path("/{uuid}")
+    @Path("/id/{uuid}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPlayer(@PathParam("uuid") UUID uuid) {
         return Response.ok()
@@ -25,7 +25,7 @@ public class PlayerEndPoints {
     }
 
     @GET
-    @Path("/byAddress/{emailaddress}")
+    @Path("/emailaddress/{emailaddress}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPlayer(@PathParam("emailaddress") String emailaddress) {
