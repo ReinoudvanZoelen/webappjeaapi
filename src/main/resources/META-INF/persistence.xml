@@ -7,7 +7,11 @@
     <persistence-unit name="CloverCoatPU" transaction-type="JTA">
         <jta-data-source>java:/JEAWebAppDB</jta-data-source>
 
+        <class>Entities.Match</class>
         <class>Entities.Player</class>
+        <class>Entities.Team</class>
+        <class>Entities.TeamScore</class>
+        <class>Entities.Tournament</class>
 
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
