@@ -36,9 +36,13 @@ public class PlayerEndPoints {
     @Path("")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Player createPlayer(@FormParam("fullname") String fullname,
+    public Response createPlayer(@FormParam("fullname") String fullname,
                                 @FormParam("emailaddress") String emailaddress,
                                 @FormParam("password") String password) {
-        return playerLogic.createPlayer(fullname, emailaddress, password);
+        Player newPlayer =  playerLogic.createPlayer(fullname, emailaddress, password);
+
+        return Response.ok()
+                .entity(newPlayer)
+                .build();
     }
 }
