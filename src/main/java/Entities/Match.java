@@ -1,14 +1,14 @@
 package Entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "tbl_Match")
 public class Match {
 
     @Id
@@ -16,14 +16,21 @@ public class Match {
     private UUID Id;
 
     @Positive(message = "Please enter a valid tablenumber for your match. Table numbers start at 1.")
-    public int SittingTableNumber;
+    private int SittingTableNumber;
 
     @OneToMany
     @Size(min = 2, max = 2, message = "Please enter valid teamscores for your match. Teamscores must be a list with exactly two of TeamScore.")
-    public List<@NotNull TeamScore> TeamScores;
+    private List<TeamScore> TeamScores;
 
     @ManyToOne
-    public Tournament Tournament;
+    @JoinColumn
+    private Tournament Tournament;
+
+    @Min(1)
+    private int RoundNumber;
+
+    public Match() {
+    }
 
     // Getters and Setters
     @XmlElement
@@ -54,12 +61,21 @@ public class Match {
     }
 
     @XmlElement
-    public Entities.Tournament getTournament() {
+    public Tournament getTournament() {
         return Tournament;
     }
 
-    public void setTournament(Entities.Tournament tournament) {
+    public void setTournament(Tournament tournament) {
         Tournament = tournament;
+    }
+
+    @XmlElement
+    public int getRoundNumber() {
+        return RoundNumber;
+    }
+
+    public void setRoundNumber(int roundNumber) {
+        RoundNumber = roundNumber;
     }
 }
 

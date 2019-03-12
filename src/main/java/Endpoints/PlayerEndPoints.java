@@ -1,5 +1,6 @@
 package Endpoints;
 
+import BLL.Implementations.PlayerLogic;
 import BLL.Interfaces.IPlayerLogic;
 import Entities.Player;
 

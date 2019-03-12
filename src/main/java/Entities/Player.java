@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "tbl_Player")
 public class Player {
 
     @Id
@@ -48,9 +48,13 @@ public class Player {
     }
 
     @XmlElement
-    public String getFullName() { return FullName; }
+    public String getFullName() {
+        return FullName;
+    }
 
-    public void setFullName(String fullName) { FullName = fullName; }
+    public void setFullName(String fullName) {
+        FullName = fullName;
+    }
 
     @XmlElement
     public String getEmailAddress() {
@@ -71,7 +75,11 @@ public class Player {
     }
 
     @XmlElement
-    public List<Team> getTeams() { return Teams; }
+    public List<Team> getTeams() {
+        return Teams;
+    }
 
-    public void setTeams(List<Team> teams) { Teams = teams; }
+    public void setTeams(List<Team> teams) {
+        Teams = teams;
+    }
 }

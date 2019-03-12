@@ -5,20 +5,23 @@ import javax.validation.constraints.PositiveOrZero;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "tbl_TeamScores")
 public class TeamScore {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID Id;
 
     @ManyToOne
-    public Team Team;
+    private Team Team;
 
     @ManyToOne
-    public Match Match;
+    private Match Match;
 
     @PositiveOrZero(message = "Please enter a valid score for this teamscore. The score must be at least 0.")
-    public int Score;
+    private int Score;
+
+    public TeamScore() {
+    }
 
     // Getters and Setters
     @XmlElement

@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "tbl_Team")
 public class Team {
 
     @Id
@@ -20,7 +20,8 @@ public class Team {
     @OneToMany
     private List<TeamScore> TeamScores;
 
-    public Team() { }
+    public Team() {
+    }
 
     // Getters and Setters
     @XmlElement
