@@ -12,8 +12,17 @@ import java.util.UUID;
 @ApplicationScoped
 public class PlayerLogic implements IPlayerLogic {
 
-    // TODO: @Inject
-    private IPlayerDAL playerJPA = new PlayerDALHibernate();
+    private IPlayerDAL playerDAL;
+
+    // Default DAL
+    public PlayerLogic() {
+        this.playerDAL = new PlayerDALHibernate();
+    }
+
+    // Override default DAL
+    public PlayerLogic(IPlayerDAL playerDAL) {
+        this.playerDAL = playerDAL;
+    }
 
     public Player createPlayer(String fullname, String emailaddress, String password)
     {
@@ -22,20 +31,20 @@ public class PlayerLogic implements IPlayerLogic {
         newPlayer.setEmailAddress(emailaddress);
         newPlayer.setPassword(password);
 
-        Player player = playerJPA.Create(newPlayer);
+        Player player = playerDAL.Create(newPlayer);
         return player;
     }
 
     @Override
     public List<Player> getAll() {
-        return playerJPA.GetAll();
+        return playerDAL.GetAll();
     }
 
     public Player getByEmailAddress(String emailAddress){
-        return playerJPA.GetByEmailAddress(emailAddress);
+        return playerDAL.GetByEmailAddress(emailAddress);
     }
 
     public Player getByUUID(UUID uuid) {
-        return playerJPA.GetById(uuid);
+        return playerDAL.GetById(uuid);
     }
 }

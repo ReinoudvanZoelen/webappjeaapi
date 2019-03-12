@@ -15,7 +15,6 @@ import java.util.UUID;
 @ApplicationScoped
 public class PlayerDALHibernate implements IPlayerDAL {
 
-    //@PersistenceContext(unitName = "CloverCoatPU")
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CloverCoatPU");
     private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
